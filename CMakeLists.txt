@@ -1,5 +1,11 @@
 cmake_minimum_required( VERSION 2.8 )
 project (stock)
 set (CMAKE_CXX_STANDARD 11)
-add_executable(stock main.cpp ReadInputData/ReadInputData.cpp)
+#add_subdirectory(Reader StockOrder)
+#add_executable(stock main.cpp)
+
+include_directories(${PROJECT_SOURCE_DIR})
+file(GLOB_RECURSE SRC_FILES ${PROJECT_SOURCE_DIR}/*er/*.cpp)
+add_executable(stock main.cpp ${SRC_FILES})
+
 target_link_libraries(${PROJECT_NAME} stdc++fs)
