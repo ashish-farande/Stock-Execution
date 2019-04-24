@@ -25,7 +25,6 @@ class StockOrder
         bool getStatus() const;
         int getRemainingQuantity() const;
 
-
         void reduceRemainingQuantity(int quantity);
 
         void printOrder();

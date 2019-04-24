@@ -10,11 +10,11 @@ class StockExchange{
 public:
     StockExchange();
     ~StockExchange();
-
+    
     bool processAllTheOrders(std::queue<StockOrder> orders);
-    bool processOrder(StockOrder& order);
 
 private:
+    bool processOrder(StockOrder& order);
     bool checkCompanyInMap(const std::string& companyName);
     bool addComapnyToMap(const std::string& companyName);
     bool buyOrder(StockOrder& order);

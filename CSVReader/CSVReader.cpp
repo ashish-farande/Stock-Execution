@@ -5,7 +5,6 @@
 #include <boost/algorithm/string.hpp>
 #include <experimental/filesystem>
 
-
 namespace fs = std::experimental::filesystem;
 
 CSVReader::CSVReader():_checkFlag(false)
@@ -74,10 +73,9 @@ StockOrder CSVReader::getStockOrder(std::string line)
     boost::algorithm::split(vec, line, boost::is_any_of(","));
     
     StockOrder order(atoi(vec[0].c_str()), vec[2], static_cast<orderSide>(vec[1]=="Buy"?0:1), atoi(vec[3].c_str()));
-    printOrder(order);
+    // printOrder(order);
     return order;
 }
-
 
 void CSVReader::printOrder( StockOrder& order)
 {
