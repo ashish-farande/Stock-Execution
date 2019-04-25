@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-file(GLOB_RECURSE SRC_FILES ${PROJECT_SOURCE_DIR}/*er/*.cpp  ${PROJECT_SOURCE_DIR}/StockExchange/*.cpp)
+file(GLOB_RECURSE SRC_FILES ${PROJECT_SOURCE_DIR}/*er/*.cpp  ${PROJECT_SOURCE_DIR}/StockExchange/*.cpp ${PROJECT_SOURCE_DIR}/LogHandler/*.cpp)
 
 add_executable(stock main.cpp ${SRC_FILES})
 

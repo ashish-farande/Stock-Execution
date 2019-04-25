@@ -83,14 +83,14 @@ bool StockExchange::sellOrder(StockOrder &order)
             _buyOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(order.getRemainingQuantity());
 
             order.reduceRemainingQuantity(order.getRemainingQuantity());
-            order.setStatus(true);
+            // order.closeOrder();
         }
         else
         {
             order.reduceRemainingQuantity(_buyOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
 
             _buyOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(_buyOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
-            _buyOrders.find(order.getCompanyName())->second.front()->setStatus(true);
+            // _buyOrders.find(order.getCompanyName())->second.front()->closeOrder();
             _buyOrders.find(order.getCompanyName())->second.pop();
         }
     }
@@ -111,14 +111,14 @@ bool StockExchange::buyOrder(StockOrder &order)
             _sellOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(order.getRemainingQuantity());
 
             order.reduceRemainingQuantity(order.getRemainingQuantity());
-            order.setStatus(true);
+            // order.closeOrder());
         }
         else
         {
             order.reduceRemainingQuantity(_sellOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
 
             _sellOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(_sellOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
-            _sellOrders.find(order.getCompanyName())->second.front()->setStatus(true);
+            // _sellOrders.find(order.getCompanyName())->second.front()->closeOrder();
 
             _sellOrders.find(order.getCompanyName())->second.pop();
         }

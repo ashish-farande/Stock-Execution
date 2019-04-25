@@ -15,7 +15,7 @@ class StockOrder
         StockOrder(int stockID, std::string companyName, orderSide side, int quantity);
         
         //Setters 
-        void setStatus(bool status);
+        void closeOrder();
 
         //Getters
         int getStockID() const;

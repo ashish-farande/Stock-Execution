@@ -1,15 +1,17 @@
-#include "StockOrder.h"
+#include "StockOrder/StockOrder.h"
+#include "LogHandler/CSVLogger.h"
 #include <assert.h> 
 #include <iostream>
 
 StockOrder::StockOrder(int stockID, std::string companyName, orderSide side, int quantity):_stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity) 
 {
-
+    CSVLogger::getInstance().writeTheOrder(*this);
 }
 
-void StockOrder::setStatus(bool status)
+void StockOrder::closeOrder()
 {
-    _status = status;
+    _status = true;
+    CSVLogger::getInstance().changeStatus(*this);
 }
 
 int StockOrder::getStockID() const
@@ -46,6 +48,14 @@ void StockOrder::reduceRemainingQuantity(int quantity)
 {
     assert(quantity<=_remainingQuantity);
     _remainingQuantity -= quantity;
+    if(_remainingQuantity == 0)
+        closeOrder();
+    else
+        CSVLogger::getInstance().updateRemainingQuantity(*this);
+    CSVLogger::getInstance().changeStatus(*this);
+    CSVLogger::getInstance().changeStatus(*this);
+
+
 }
 
 void StockOrder::printOrder()
