@@ -1,6 +1,6 @@
 #include "CSVReader.h"
+#include <iostream>
 #include <iterator>
-#include <string>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 #include <experimental/filesystem>

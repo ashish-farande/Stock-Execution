@@ -1,4 +1,5 @@
 #include "StockExchange.h"
+
 #include <iostream>
 
 StockExchange::StockExchange()

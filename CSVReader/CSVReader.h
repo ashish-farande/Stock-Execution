@@ -2,16 +2,15 @@
 #define CSVREADER_H_
 
 #include "I_CSVReader.h"
-#include <iostream>
 #include <string>
-#include <vector>
+#include <list>
 #include <fstream>
 
 class CSVReader : public I_CSVReader
 {
   public:
     CSVReader();
-    virtual ~CSVReader() { ; };
+    virtual ~CSVReader() {;};
     virtual bool getDataFromFile(std::list<StockOrder> &orderlist);
     virtual void printOrder(StockOrder &order);
 

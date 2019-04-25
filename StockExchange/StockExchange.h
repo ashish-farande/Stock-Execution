@@ -1,10 +1,10 @@
 #ifndef STOCKEXCHANGE_H_
 #define STOCKEXCHANGE_H_
+
 #include <StockOrder/StockOrder.h>
 #include <map>
 #include <list>
 #include <queue>
-#include <vector>
 
 class StockExchange
 {
