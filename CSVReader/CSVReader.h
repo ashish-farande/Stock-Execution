@@ -12,7 +12,7 @@ class CSVReader: public I_CSVReader
     public:
         CSVReader();
         virtual ~CSVReader(){;};
-        virtual std::queue<StockOrder> getDataFromFile();
+        virtual std::list<StockOrder> getDataFromFile();
         virtual void printOrder( StockOrder& order);
 
     private:

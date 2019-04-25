@@ -9,21 +9,29 @@ StockExchange::~StockExchange()
 {
 }
 
-bool StockExchange::processAllTheOrders(std::queue<StockOrder> orders)
+bool StockExchange::processAllTheOrders(std::list<StockOrder> orders)
 {
-    while (!orders.empty())
+    std::list<StockOrder>::iterator it1 = orders.begin();
+    for(;it1!=orders.end();)
     {
-        _listOfOrders.push_back(orders.front());
-        orders.pop();
+        processOrder(*it1);
+        if((*it1).getStatus())
+             it1 = orders.erase(it1);  
+        
+        else if(it1!=orders.end())
+        {
+            it1++;
+        }
     }
 
-    for (auto &order : _listOfOrders)
-        processOrder(order);
+    // for (auto &order : _listOfOrders)
 
-    std::cout << "\n \nFinal Status" << std::endl;
-    for (auto order : _listOfOrders)
-        order.printOrder();
-
+    while(!_listOfOrdersTodestroy.empty())
+    {
+        // orders.remove(*_listOfOrdersTodestroy.front());
+        _listOfOrdersTodestroy.front()->printOrder();
+        _listOfOrdersTodestroy.pop();
+    }
     return true;
 }
 
@@ -83,14 +91,13 @@ bool StockExchange::sellOrder(StockOrder &order)
             _buyOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(order.getRemainingQuantity());
 
             order.reduceRemainingQuantity(order.getRemainingQuantity());
-            // order.closeOrder();
         }
         else
         {
             order.reduceRemainingQuantity(_buyOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
 
             _buyOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(_buyOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
-            // _buyOrders.find(order.getCompanyName())->second.front()->closeOrder();
+            _listOfOrdersTodestroy.push(_buyOrders.find(order.getCompanyName())->second.front());
             _buyOrders.find(order.getCompanyName())->second.pop();
         }
     }
@@ -111,15 +118,13 @@ bool StockExchange::buyOrder(StockOrder &order)
             _sellOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(order.getRemainingQuantity());
 
             order.reduceRemainingQuantity(order.getRemainingQuantity());
-            // order.closeOrder());
         }
         else
         {
             order.reduceRemainingQuantity(_sellOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
 
             _sellOrders.find(order.getCompanyName())->second.front()->reduceRemainingQuantity(_sellOrders.find(order.getCompanyName())->second.front()->getRemainingQuantity());
-            // _sellOrders.find(order.getCompanyName())->second.front()->closeOrder();
-
+            _listOfOrdersTodestroy.push(_sellOrders.find(order.getCompanyName())->second.front());
             _sellOrders.find(order.getCompanyName())->second.pop();
         }
     }

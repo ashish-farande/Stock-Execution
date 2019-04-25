@@ -2,6 +2,7 @@
 #define STOCKEXCHANGE_H_
 #include <StockOrder/StockOrder.h>
 #include <map>
+#include <list>
 #include <queue>
 #include <vector>
 
@@ -11,7 +12,7 @@ public:
     StockExchange();
     ~StockExchange();
     
-    bool processAllTheOrders(std::queue<StockOrder> orders);
+    bool processAllTheOrders(std::list<StockOrder> orders);
 
 private:
     bool processOrder(StockOrder& order);
@@ -27,7 +28,8 @@ private:
 private:
     std::map <std::string, std::queue<StockOrder*>> _buyOrders;
     std::map <std::string, std::queue<StockOrder*>> _sellOrders;
-    std::vector <StockOrder> _listOfOrders;
+
+    std::queue <StockOrder*> _listOfOrdersTodestroy;
 };
 
 #endif

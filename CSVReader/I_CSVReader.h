@@ -2,7 +2,7 @@
 #define I_CSVREADER_H_
 
 #include <string>
-#include <queue>
+#include <list>
 #include "StockOrder/StockOrder.h"
 
 
@@ -11,7 +11,7 @@ class I_CSVReader
     public:
       I_CSVReader() {}
       virtual ~I_CSVReader() {}
-      virtual std::queue<StockOrder> getDataFromFile() = 0;
+      virtual std::list<StockOrder> getDataFromFile() = 0;
       virtual void printOrder(StockOrder &order) = 0;
 
 };

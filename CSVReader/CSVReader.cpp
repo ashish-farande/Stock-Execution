@@ -11,16 +11,16 @@ CSVReader::CSVReader():_checkFlag(false)
 {
 }
 
-std::queue<StockOrder> CSVReader::getDataFromFile()
+std::list<StockOrder> CSVReader::getDataFromFile()
 {
     getFileName();
-    std::queue<StockOrder> orderlist;
+    std::list<StockOrder> orderlist;
     std::ifstream file(_fileName);
     std::string line;
     while (getline(file, line)){
         if(_checkFlag)
         {
-            orderlist.push(getStockOrder(line));
+            orderlist.push_back(getStockOrder(line));
         }
         _checkFlag = true;
     }

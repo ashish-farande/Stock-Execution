@@ -37,5 +37,6 @@ class StockOrder
         int _quantity;
         int _remainingQuantity;
         bool _status = false;
+
 };
 #endif
