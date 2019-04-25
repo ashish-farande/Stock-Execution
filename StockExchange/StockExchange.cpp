@@ -13,7 +13,7 @@ StockExchange::~StockExchange()
 bool StockExchange::processAllTheOrders(std::list<StockOrder> &orders)
 {
     std::list<StockOrder>::iterator listIterator = orders.begin();
-    for (; listIterator != orders.end();)
+    while (listIterator != orders.end())
     {
         processOrder(*listIterator);
         if ((*listIterator).getStatus())
