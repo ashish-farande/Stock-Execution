@@ -17,19 +17,15 @@ public:
 
     virtual bool writeTheOrder(const StockOrder& order);
     virtual bool changeStatus(const StockOrder &order);
-    virtual bool updateRemainingQuantity(const StockOrder &order);    
 
 private:
     const std::string getSideString (int side);
     const std::string getStatusString(int status);
+    const std::string getReamQuantityString(int quantity, int remainingQuantity);
 
 private:
     CSVLogger();
     std::fstream _outputFile;
-    //static std::shared_ptr<CSVLogger> s_instance;
-
 };
-
-
 
 #endif

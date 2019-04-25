@@ -32,40 +32,17 @@ bool CSVLogger::changeStatus(const StockOrder &order)
 {
     int currentLine = 0;
     _outputFile.seekg(0);
-    std::cout<<"The STockID is: "<<order.getStockID()<<std::endl;
+    
     while (currentLine < order.getStockID())
     {
         _outputFile.ignore( std::numeric_limits<std::streamsize>::max(), '\n') ;
         ++currentLine ;
     }
 
-    std::cout<<"The Position now is: "<<_outputFile.tellp()<<std::endl;
     _outputFile.seekg(_outputFile.tellp());
-    std::string str = std::to_string(order.getStockID()) + "," + getSideString(order.getSide()) +  "," + order.getCompanyName() + "," + std::to_string(order.getQuantity()) +";"+std::to_string(order.getRemainingQuantity()) + "," + getStatusString(order.getStatus())+ "\n" ;    
-    std::cout<<"The string to be added is: "<<str<<std::endl;
-    _outputFile.write(str.c_str(), str.length()+1) ;
-    std::cout<<std::endl;
-
-    return true;
-}
-
-bool CSVLogger::updateRemainingQuantity(const StockOrder &order)
-{
-    int currentLine = 0;
-    _outputFile.seekg(0);
-    std::cout<<"The STockID is: "<<order.getStockID()<<std::endl;
-    while (currentLine < order.getStockID())
-    {
-        _outputFile.ignore( std::numeric_limits<std::streamsize>::max(), '\n') ;
-        ++currentLine ;
-    }
-
-    std::cout<<"The Position now is: "<<_outputFile.tellp()<<std::endl;
-    _outputFile.seekg(_outputFile.tellp());
-    std::string str = std::to_string(order.getStockID()) + "," + getSideString(order.getSide()) +  "," + order.getCompanyName() + "," + std::to_string(order.getQuantity()) +";"+std::to_string(order.getRemainingQuantity()) + "," + getStatusString(order.getStatus())+ "\n" ;
-    std::cout<<"The string to be added is: "<<str<<std::endl;
-    _outputFile.write(str.c_str(), str.length()+1) ;
-    std::cout<<std::endl;
+    std::string str = std::to_string(order.getStockID()) + "," + getSideString(order.getSide()) +  "," + order.getCompanyName() + "," + std::to_string(order.getQuantity()) +";" + getReamQuantityString(order.getQuantity(), order.getRemainingQuantity()) + "," + getStatusString(order.getStatus())+ "\n" ;    
+    _outputFile.write(str.c_str(), str.length()) ;
+    
     return true;
 }
 
@@ -76,5 +53,15 @@ const std::string CSVLogger::getSideString(int side)
 
 const std::string CSVLogger::getStatusString(int status)
 {
-    return status?"CLOSED":"OPEN";
+    return status?"CLOSED":"OPEN  ";
+
+}
+
+const std::string CSVLogger::getReamQuantityString(int quantity, int remainingQuantity)
+{
+    std::string remainingQuantityStr;
+    remainingQuantityStr =  std::to_string(remainingQuantity);
+    while(std::to_string(quantity).length() > remainingQuantityStr.length())
+        remainingQuantityStr.append(" ");
+    return remainingQuantityStr;
 }

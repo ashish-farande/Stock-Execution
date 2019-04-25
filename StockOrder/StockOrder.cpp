@@ -51,9 +51,7 @@ void StockOrder::reduceRemainingQuantity(int quantity)
     if(_remainingQuantity == 0)
         closeOrder();
     else
-        CSVLogger::getInstance().updateRemainingQuantity(*this);
-    CSVLogger::getInstance().changeStatus(*this);
-    CSVLogger::getInstance().changeStatus(*this);
+        CSVLogger::getInstance().changeStatus(*this);
 
 
 }
