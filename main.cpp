@@ -3,7 +3,6 @@
 #include "CSVReader/CSVReader.h"
 #include "StockOrder/StockOrder.h"
 #include "StockExchange/StockExchange.h"
-// #include "LogHandler/CSVLogger.h"
 #include <map>
 #include <list>
 #include <memory>
@@ -14,7 +13,7 @@ int main(){
 
     std::list<StockOrder> orderRequest;
     std::shared_ptr<I_CSVReader> reader (new CSVReader);
-    orderRequest = reader->getDataFromFile();
+    reader->getDataFromFile(orderRequest);
     
     StockExchange obj;
     obj.processAllTheOrders(orderRequest);

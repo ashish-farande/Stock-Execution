@@ -9,7 +9,7 @@ StockExchange::~StockExchange()
 {
 }
 
-bool StockExchange::processAllTheOrders(std::list<StockOrder> orders)
+bool StockExchange::processAllTheOrders(std::list<StockOrder>& orders)
 {
     std::list<StockOrder>::iterator it1 = orders.begin();
     for(;it1!=orders.end();)

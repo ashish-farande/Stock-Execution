@@ -11,10 +11,10 @@ CSVReader::CSVReader():_checkFlag(false)
 {
 }
 
-std::list<StockOrder> CSVReader::getDataFromFile()
+bool CSVReader::getDataFromFile(std::list<StockOrder>& orderlist)
 {
     getFileName();
-    std::list<StockOrder> orderlist;
+    ;
     std::ifstream file(_fileName);
     std::string line;
     while (getline(file, line)){
@@ -26,7 +26,7 @@ std::list<StockOrder> CSVReader::getDataFromFile()
     }
     file.close();
     
-    return orderlist;
+    return true;
 }
 
 void CSVReader::getFileName()

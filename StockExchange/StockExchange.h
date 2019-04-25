@@ -12,7 +12,7 @@ public:
     StockExchange();
     ~StockExchange();
     
-    bool processAllTheOrders(std::list<StockOrder> orders);
+    bool processAllTheOrders(std::list<StockOrder>& orders);
 
 private:
     bool processOrder(StockOrder& order);

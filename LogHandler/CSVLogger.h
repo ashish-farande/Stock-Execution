@@ -15,7 +15,7 @@ public:
     virtual ~CSVLogger();
 
     virtual bool writeTheOrder(const StockOrder& order);
-    virtual bool changeStatus(const StockOrder &order);
+    virtual bool changeStatus(const StockOrder& order);
 
 private:
     const std::string getSideString (int side);
