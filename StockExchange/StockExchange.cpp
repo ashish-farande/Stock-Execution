@@ -136,36 +136,3 @@ bool StockExchange::buyOrder(StockOrder &order)
 
     return true;
 }
-
-void StockExchange::printSellOrderMap()
-{
-    std::cout << "////////////////////////////////////////////////////////////////////////////" << std::endl;
-    std::cout << "Sell Order Map" << std::endl;
-    for (auto it = _sellOrders.begin(); it != _sellOrders.end(); ++it)
-    {
-        std::cout << it->first << std::endl;
-        if (!it->second.empty())
-            it->second.front()->printOrder();
-        std::cout << std::endl;
-    }
-    std::cout << "////////////////////////////////////////////////////////////////////////////\n"
-              << std::endl;
-}
-
-void StockExchange::printBuyOrderMap()
-{
-    std::cout << "////////////////////////////////////////////////////////////////////////////" << std::endl;
-    std::cout << "Buy Order Map" << std::endl;
-    for (auto it = _buyOrders.begin(); it != _buyOrders.end(); it++)
-    {
-        std::cout << it->first << std::endl;
-        if (!it->second.empty())
-        {
-            it->second.front()->printOrder();
-            std::cout << "The Address is: " << &it->second.front() << std::endl;
-        }
-        std::cout << std::endl;
-    }
-    std::cout << "////////////////////////////////////////////////////////////////////////////\n"
-              << std::endl;
-}

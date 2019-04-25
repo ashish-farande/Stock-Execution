@@ -22,9 +22,6 @@ class StockExchange
     bool buyOrder(StockOrder &order);
     bool sellOrder(StockOrder &order);
 
-    void printSellOrderMap();
-    void printBuyOrderMap();
-
   private:
     std::map<std::string, std::queue<StockOrder *>> _buyOrders;
     std::map<std::string, std::queue<StockOrder *>> _sellOrders;
