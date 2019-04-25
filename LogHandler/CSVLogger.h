@@ -4,7 +4,6 @@
 
 #include "StockOrder/StockOrder.h"
 #include "fstream"
-#include <memory>
 
 class CSVLogger
 {

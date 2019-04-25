@@ -5,15 +5,13 @@
 #include <list>
 #include "StockOrder/StockOrder.h"
 
-
 class I_CSVReader
 {
-    public:
-      I_CSVReader() {}
-      virtual ~I_CSVReader() {}
-      virtual bool getDataFromFile(std::list<StockOrder>& orderlist) = 0;
-      virtual void printOrder(StockOrder &order) = 0;
-
+public:
+  I_CSVReader() {}
+  virtual ~I_CSVReader() {}
+  virtual bool getDataFromFile(std::list<StockOrder> &orderlist) = 0;
+  virtual void printOrder(StockOrder &order) = 0;
 };
 
 #endif

@@ -6,30 +6,30 @@
 #include <queue>
 #include <vector>
 
-class StockExchange{
+class StockExchange
+{
 
-public:
+  public:
     StockExchange();
     ~StockExchange();
-    
-    bool processAllTheOrders(std::list<StockOrder>& orders);
 
-private:
-    bool processOrder(StockOrder& order);
-    bool checkCompanyInMap(const std::string& companyName);
-    bool addComapnyToMap(const std::string& companyName);
-    bool buyOrder(StockOrder& order);
-    bool sellOrder(StockOrder& order);
+    bool processAllTheOrders(std::list<StockOrder> &orders);
+
+  private:
+    bool processOrder(StockOrder &order);
+    bool checkCompanyInMap(const std::string &companyName);
+    bool addComapnyToMap(const std::string &companyName);
+    bool buyOrder(StockOrder &order);
+    bool sellOrder(StockOrder &order);
 
     void printSellOrderMap();
     void printBuyOrderMap();
 
+  private:
+    std::map<std::string, std::queue<StockOrder *>> _buyOrders;
+    std::map<std::string, std::queue<StockOrder *>> _sellOrders;
 
-private:
-    std::map <std::string, std::queue<StockOrder*>> _buyOrders;
-    std::map <std::string, std::queue<StockOrder*>> _sellOrders;
-
-    std::queue <StockOrder*> _listOfOrdersTodestroy;
+    std::queue<StockOrder *> _listOfOrdersTodestroy;
 };
 
 #endif

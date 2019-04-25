@@ -9,29 +9,28 @@ StockExchange::~StockExchange()
 {
 }
 
-bool StockExchange::processAllTheOrders(std::list<StockOrder>& orders)
+bool StockExchange::processAllTheOrders(std::list<StockOrder> &orders)
 {
-    std::list<StockOrder>::iterator it1 = orders.begin();
-    for(;it1!=orders.end();)
+    std::list<StockOrder>::iterator listIterator = orders.begin();
+    for (; listIterator != orders.end();)
     {
-        processOrder(*it1);
-        if((*it1).getStatus())
-             it1 = orders.erase(it1);  
-        
-        else if(it1!=orders.end())
+        processOrder(*listIterator);
+        if ((*listIterator).getStatus())
+            listIterator = orders.erase(listIterator);
+
+        else if (listIterator != orders.end())
         {
-            it1++;
+            listIterator++;
+        }
+
+        while (!_listOfOrdersTodestroy.empty())
+        {
+            //TODO: Need to delete these orders from the list.
+            _listOfOrdersTodestroy.front()->printOrder();
+            _listOfOrdersTodestroy.pop();
         }
     }
 
-    // for (auto &order : _listOfOrders)
-
-    while(!_listOfOrdersTodestroy.empty())
-    {
-        // orders.remove(*_listOfOrdersTodestroy.front());
-        _listOfOrdersTodestroy.front()->printOrder();
-        _listOfOrdersTodestroy.pop();
-    }
     return true;
 }
 
