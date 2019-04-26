@@ -2,7 +2,7 @@
 #include <limits>
 #include <iostream>
 
-#define FILE_NAME "Output/OutputFile.csv"
+#define FILE_NAME "OutputFiles/OutputFile.csv"
 
 CSVLogger &CSVLogger::getInstance()
 {
