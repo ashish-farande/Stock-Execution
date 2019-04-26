@@ -5,6 +5,9 @@
 #include <boost/algorithm/string.hpp>
 #include <experimental/filesystem>
 
+#define ROOT_DIRECTORY "../"
+#define INPUT_PATH "InputFiles"
+
 namespace fs = std::experimental::filesystem;
 
 CSVReader::CSVReader() : _checkFlag(false)
@@ -32,11 +35,12 @@ bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
 
 void CSVReader::getFileName()
 {
-    std::string path = "./";
+    std::string path = ROOT_DIRECTORY;
+    path.append(INPUT_PATH);
     std::vector<std::string> listOfCSV;
     std::cout << "List of .csv files: " << std::endl;
 
-    for (auto &p : fs::directory_iterator("./"))
+    for (auto &p : fs::directory_iterator(path))
     {
         std::string fileName = p.path();
         if (fileName.substr(fileName.find_last_of(".") + 1) == "csv")
@@ -51,7 +55,7 @@ void CSVReader::getFileName()
     if (listOfCSV.size() == 1)
     {
         std::cout << "There is only one csv file: " << listOfCSV[0] << std::endl;
-        std::cout << "Selecting it..." << std::endl;
+        std::cout << "Selecting it...\n " << std::endl;
         _fileName = listOfCSV[0];
         return;
     }
