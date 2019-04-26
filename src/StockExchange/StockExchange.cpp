@@ -82,7 +82,7 @@ bool StockExchange::sellOrder(StockOrder &order, std::list<StockOrder> &orders)
     {
         StockOrder *firstOrderInQueue = _buyOrders.find(order.getCompanyName())->second.front();
 
-        if (firstOrderInQueue->getRemainingQuantity() >= order.getRemainingQuantity())
+        if (firstOrderInQueue->getRemainingQuantity() > order.getRemainingQuantity())
         {
             firstOrderInQueue->reduceRemainingQuantity(order.getRemainingQuantity());
 
@@ -111,7 +111,7 @@ bool StockExchange::buyOrder(StockOrder &order, std::list<StockOrder> &orders)
     {
         StockOrder *firstOrderInQueue = _sellOrders.find(order.getCompanyName())->second.front();
 
-        if (firstOrderInQueue->getRemainingQuantity() >= order.getRemainingQuantity())
+        if (firstOrderInQueue->getRemainingQuantity() > order.getRemainingQuantity())
         {
             firstOrderInQueue->reduceRemainingQuantity(order.getRemainingQuantity());
 

@@ -12,7 +12,7 @@ CSVLogger &CSVLogger::getInstance()
 
 CSVLogger::CSVLogger()
 {
-    _outputFile.open(FILE_NAME, std::ios::in | std::ios::out);
+    _outputFile.open(FILE_NAME, std::ios::in | std::ios::out | std::ios::trunc);
     _outputFile << "StockID,Side,Company,Quantity,Status\n";
 }
 
