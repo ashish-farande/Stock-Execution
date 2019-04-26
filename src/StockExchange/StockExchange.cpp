@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <assert.h>
 
 StockExchange::StockExchange()
 {
@@ -93,7 +94,18 @@ bool StockExchange::sellOrder(StockOrder &order, std::list<StockOrder> &orders)
             order.reduceRemainingQuantity(firstOrderInQueue->getRemainingQuantity());
 
             firstOrderInQueue->reduceRemainingQuantity(firstOrderInQueue->getRemainingQuantity());
-            orders.remove(*firstOrderInQueue);
+
+            // TODO: Verify weather removing object from list before removing from queue wont lead to memory Corruption
+            assert(firstOrderInQueue->getRemainingQuantity() == 0);
+
+            #ifdef false
+                // This is less efficient as it compares all the elements in the list even though the element is found, which is contrary to std::find
+                orders.remove(*firstOrderInQueue);
+            #endif
+
+            auto it = std::find(orders.begin(), orders.end(), *firstOrderInQueue);
+            orders.erase(it);
+            
             _buyOrders.find(order.getCompanyName())->second.pop();
         }
     }
@@ -122,7 +134,18 @@ bool StockExchange::buyOrder(StockOrder &order, std::list<StockOrder> &orders)
             order.reduceRemainingQuantity(firstOrderInQueue->getRemainingQuantity());
 
             firstOrderInQueue->reduceRemainingQuantity(firstOrderInQueue->getRemainingQuantity());
-            orders.remove(*firstOrderInQueue);
+
+            // TODO: Verify weather removing object from list before removing from queue wont lead to memory Corruption
+            assert(firstOrderInQueue->getRemainingQuantity() == 0);
+
+            #ifdef false
+                // This is less efficient as it compares all the elements in the list even though the element is found, which is contrary to std::find
+                orders.remove(*firstOrderInQueue);
+            #endif
+
+            auto it = std::find(orders.begin(), orders.end(), *firstOrderInQueue);
+            orders.erase(it);
+            
             _sellOrders.find(order.getCompanyName())->second.pop();
         }
     }

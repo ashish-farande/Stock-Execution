@@ -10,6 +10,7 @@ StockOrder::StockOrder(int stockID, std::string companyName, orderSide side, int
 
 void StockOrder::closeOrder()
 {
+    assert(_status == orderStatus::OPEN);
     _status = orderStatus::CLOSED;
     CSVLogger::getInstance().changeStatus(*this);
 }
