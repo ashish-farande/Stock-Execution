@@ -84,11 +84,9 @@ StockOrder CSVReader::getStockOrder(std::string &line)
 
 void CSVReader::printOrder(StockOrder &order)
 {
-    std::string side = static_cast<int>(order.getSide()) ? "Sell" : "Buy";
-
     std::cout << "========================================" << std::endl;
     std::cout << "Stock ID: " << order.getStockID() << std::endl;
-    std::cout << "Side: " << side << std::endl;
+    std::cout << "Side: " << (static_cast<int>(order.getSide()) ? "Sell" : "Buy") << std::endl;
     std::cout << "Company Name: " << order.getCompanyName() << std::endl;
     std::cout << "Quantity: " << order.getQuantity() << std::endl;
     std::cout << "========================================" << std::endl;

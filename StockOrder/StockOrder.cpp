@@ -10,7 +10,7 @@ StockOrder::StockOrder(int stockID, std::string companyName, orderSide side, int
 
 void StockOrder::closeOrder()
 {
-    _status = true;
+    _status = orderStatus::CLOSED;
     CSVLogger::getInstance().changeStatus(*this);
 }
 
@@ -34,7 +34,7 @@ int StockOrder::getQuantity() const
     return _quantity;
 }
 
-bool StockOrder::getStatus() const
+orderStatus StockOrder::getStatus() const
 {
     return _status;
 }
@@ -58,10 +58,10 @@ void StockOrder::printOrder()
 {
     std::cout << "========================================================================" << std::endl;
     std::cout << "The StockID is: " << _stockID << std::endl;
-    std::cout << "The Order side is: " << _side << std::endl;
+    std::cout << "The Order side is: " << (_side ? "Sell" : "Buy") << std::endl;
     std::cout << "The Company Name is: " << _companyName << std::endl;
     std::cout << "The Quantity is: " << _quantity << std::endl;
     std::cout << "The Remaining is: " << _remainingQuantity << std::endl;
-    std::cout << "The Status is: " << _status << std::endl;
+    std::cout << "The Status is: " << (_status ? "CLOSED" : "OPEN") << std::endl;
     std::cout << "========================================================================" << std::endl;
 }

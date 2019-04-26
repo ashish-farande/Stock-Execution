@@ -1,6 +1,7 @@
 #include "StockExchange.h"
 
 #include <iostream>
+#include <algorithm>
 
 StockExchange::StockExchange()
 {
@@ -16,7 +17,7 @@ bool StockExchange::processAllTheOrders(std::list<StockOrder> &orders)
     while (listIterator != orders.end())
     {
         processOrder(*listIterator);
-        if ((*listIterator).getStatus())
+        if (static_cast<int>((*listIterator).getStatus()))
             listIterator = orders.erase(listIterator);
 
         else if (listIterator != orders.end())
@@ -26,11 +27,17 @@ bool StockExchange::processAllTheOrders(std::list<StockOrder> &orders)
 
         while (!_listOfOrdersTodestroy.empty())
         {
-            //TODO: Need to delete these orders from the list.
-            _listOfOrdersTodestroy.front()->printOrder();
+            orders.remove(*_listOfOrdersTodestroy.front());
             _listOfOrdersTodestroy.pop();
         }
     }
+
+
+    std::cout<<"Remaining orders in the list are: "<<std::endl;
+    for (auto it= orders.begin();it!= orders.end(); ++it)
+        (*it).printOrder();
+
+
 
     return true;
 }
@@ -40,7 +47,7 @@ bool StockExchange::processOrder(StockOrder &order)
     if (!checkCompanyInMap(order.getCompanyName()))
     {
         addComapnyToMap(order.getCompanyName());
-        if (order.getSide())
+        if (static_cast<int>(order.getSide()))
         {
             _sellOrders.find(order.getCompanyName())->second.push(&order);
         }
@@ -52,7 +59,7 @@ bool StockExchange::processOrder(StockOrder &order)
 
     else
     {
-        if (order.getSide())
+        if (static_cast<int>(order.getSide()))
         {
             sellOrder(order);
         }

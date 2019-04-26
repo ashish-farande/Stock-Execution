@@ -3,6 +3,12 @@
 
 #include <string>
 
+enum orderStatus
+{
+  OPEN = false,
+  CLOSED = true
+};
+
 enum orderSide
 {
     BUY,
@@ -19,7 +25,7 @@ class StockOrder
     const std::string &getCompanyName() const;
     orderSide getSide() const;
     int getQuantity() const;
-    bool getStatus() const;
+    orderStatus getStatus() const;
     int getRemainingQuantity() const;
 
     void reduceRemainingQuantity(int quantity);
@@ -28,12 +34,22 @@ class StockOrder
 
     void closeOrder();
 
+    bool operator==(const StockOrder *order) const
+    {
+      return this->_stockID == order->_stockID;
+    }
+
+    bool operator==(const StockOrder &order) const
+    {
+      return this->_stockID == order._stockID;
+    }
+
   private:
     int _stockID;
     std::string _companyName;
     orderSide _side;
     int _quantity;
     int _remainingQuantity;
-    bool _status = false;
+    orderStatus _status = orderStatus::OPEN;
 };
 #endif
