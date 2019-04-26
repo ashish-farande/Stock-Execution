@@ -31,14 +31,7 @@ bool StockExchange::processAllTheOrders(std::list<StockOrder> &orders)
             _listOfOrdersTodestroy.pop();
         }
     }
-
-
-    std::cout<<"Remaining orders in the list are: "<<std::endl;
-    for (auto it= orders.begin();it!= orders.end(); ++it)
-        (*it).printOrder();
-
-
-
+    
     return true;
 }
 
