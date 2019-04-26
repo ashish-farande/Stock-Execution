@@ -16,17 +16,15 @@ class StockExchange
     bool processAllTheOrders(std::list<StockOrder> &orders);
 
   private:
-    bool processOrder(StockOrder &order);
+    bool processOrder(StockOrder &order, std::list<StockOrder> &orders);
     bool checkCompanyInMap(const std::string &companyName);
     bool addComapnyToMap(const std::string &companyName);
-    bool buyOrder(StockOrder &order);
-    bool sellOrder(StockOrder &order);
+    bool buyOrder(StockOrder &order, std::list<StockOrder> &orders);
+    bool sellOrder(StockOrder &order, std::list<StockOrder> &orders);
 
   private:
     std::map<std::string, std::queue<StockOrder *>> _buyOrders;
     std::map<std::string, std::queue<StockOrder *>> _sellOrders;
-
-    std::queue<StockOrder *> _listOfOrdersTodestroy;
 };
 
 #endif

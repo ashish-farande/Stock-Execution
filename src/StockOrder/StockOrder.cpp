@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <iostream>
 
-StockOrder::StockOrder(int stockID, std::string companyName, orderSide side, int quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity)
+StockOrder::StockOrder(int stockID, std::string companyName, orderSide side, int quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
 {
     CSVLogger::getInstance().writeTheOrder(*this);
 }

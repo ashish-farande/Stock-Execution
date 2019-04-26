@@ -50,6 +50,6 @@ class StockOrder
     orderSide _side;
     int _quantity;
     int _remainingQuantity;
-    orderStatus _status = orderStatus::OPEN;
+    orderStatus _status;
 };
 #endif

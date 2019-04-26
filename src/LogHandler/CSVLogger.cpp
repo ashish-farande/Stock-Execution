@@ -2,12 +2,12 @@
 #include <limits>
 #include <iostream>
 
-#define FILE_NAME "OutputFiles/OutputFile.csv"
+#define FILE_NAME "../OutputFiles/OutputFile.csv"
 
 CSVLogger &CSVLogger::getInstance()
 {
-    static CSVLogger obj;
-    return obj;
+    static CSVLogger s_instance;
+    return s_instance;
 }
 
 CSVLogger::CSVLogger()
