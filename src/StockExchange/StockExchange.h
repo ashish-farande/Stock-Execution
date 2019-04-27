@@ -23,8 +23,8 @@ class StockExchange
     bool sellOrder(StockOrder &order, std::list<StockOrder> &orders);
 
   private:
-    std::map<std::string, std::queue<StockOrder *>> _buyOrders;
-    std::map<std::string, std::queue<StockOrder *>> _sellOrders;
+    std::map<std::string, std::queue<StockOrder *> > _buyOrders;
+    std::map<std::string, std::queue<StockOrder *> > _sellOrders;
 };
 
 #endif
