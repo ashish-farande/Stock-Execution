@@ -10,12 +10,14 @@ class StockExchange
 {
 
   public:
-    StockExchange();
+    static StockExchange& getInstance();  
     ~StockExchange();
 
     bool processAllTheOrders(std::list<StockOrder> &orders);
+    bool processCurrentOrder(std::list<StockOrder> &orders);
 
   private:
+    StockExchange();
     bool processOrder(StockOrder &order, std::list<StockOrder> &orders);
     bool checkCompanyInMap(const std::string &companyName);
     bool addComapnyToMap(const std::string &companyName);
