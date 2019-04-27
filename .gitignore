@@ -4,4 +4,4 @@ CMakeCache.txt
 *CMakeFiles/
 .vscode/
 stock
-build/
+build/*
