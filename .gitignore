@@ -1,7 +1,6 @@
 Makefile
 CMakeCache.txt
 *.cmake
-*CMakeFiles/
+CMakeFiles*
 .vscode/
 stock
-build/*
