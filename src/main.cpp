@@ -15,8 +15,7 @@ int main()
     reader->getDataFromFile(orderRequestList);
 
     // Process the orders in the list.
-    StockExchange stockOrderProcessor;
-    stockOrderProcessor.processAllTheOrders(orderRequestList);
+    // StockExchange::getInstance().processAllTheOrders(orderRequestList);
 
     // The process will be printed and edited as soon as they are entered and modified.
     // Only the open orders will be remaining in the list

@@ -5,6 +5,9 @@
 #include <boost/algorithm/string.hpp>
 #include <experimental/filesystem>
 
+#include "StockExchange/StockExchange.h"
+
+
 #define ROOT_DIRECTORY "../"
 #define INPUT_PATH "InputFiles"
 
@@ -17,7 +20,7 @@ CSVReader::CSVReader() : _checkFlag(false)
 bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
 {
     getFileName();
-    ;
+
     std::ifstream file(_fileName);
     std::string line;
     while (getline(file, line))
@@ -25,7 +28,9 @@ bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
         if (_checkFlag)
         {
             orderlist.push_back(getStockOrder(line));
+            StockExchange::getInstance().processCurrentOrder(orderlist);
         }
+
         _checkFlag = true;
     }
     file.close();

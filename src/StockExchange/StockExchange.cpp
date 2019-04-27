@@ -4,6 +4,13 @@
 #include <algorithm>
 #include <assert.h>
 
+
+StockExchange &StockExchange::getInstance()
+{
+    static StockExchange s_instance;
+    return s_instance;
+}
+
 StockExchange::StockExchange()
 {
 }
@@ -26,7 +33,16 @@ bool StockExchange::processAllTheOrders(std::list<StockOrder> &orders)
             listIterator++;
         }
     }
-    
+    return true;
+}
+
+
+bool StockExchange::processCurrentOrder(std::list<StockOrder> &orders)
+{
+    processOrder(orders.back(), orders);
+    if (static_cast<int>(orders.back().getStatus()))
+        orders.remove(orders.back());   
+
     return true;
 }
 
