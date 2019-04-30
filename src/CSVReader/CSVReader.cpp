@@ -28,6 +28,7 @@ bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
         if (_checkFlag)
         {
             orderlist.push_back(getStockOrder(line));
+            // Process the order as soom as we read it.
             StockExchange::getInstance().processCurrentOrder(orderlist);
         }
 

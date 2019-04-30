@@ -42,21 +42,20 @@ bool CSVLogger::changeStatus(const StockOrder &order)
     _outputFile.seekg(_outputFile.tellp());
     std::string str = std::to_string(order.getStockID()) + "," + getSideString(order.getSide()) + "," + order.getCompanyName() + "," + std::to_string(order.getQuantity()) + ";" + getReamQuantityString(order.getQuantity(), order.getRemainingQuantity()) + "," + getStatusString(order.getStatus()) + "\n";
     _outputFile.write(str.c_str(), str.length());
-
     return true;
 }
 
-const std::string CSVLogger::getSideString(int side)
+const std::string CSVLogger::getSideString(const orderSide side)
 {
-    return side ? "Sell" : "Buy";
+    return static_cast<bool>(side) ? "Sell" : "Buy";
 }
 
-const std::string CSVLogger::getStatusString(int status)
+const std::string CSVLogger::getStatusString(const orderStatus status)
 {
-    return status ? "CLOSED" : "OPEN  ";
+    return static_cast<bool>(status) ? "CLOSED" : "OPEN  ";
 }
 
-const std::string CSVLogger::getReamQuantityString(int quantity, int remainingQuantity)
+const std::string CSVLogger::getReamQuantityString(const Quantity quantity, const Quantity remainingQuantity)
 {
     std::string remainingQuantityStr;
     remainingQuantityStr = std::to_string(remainingQuantity);

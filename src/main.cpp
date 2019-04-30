@@ -20,8 +20,8 @@ int main()
     // The process will be printed and edited as soon as they are entered and modified.
     // Only the open orders will be remaining in the list
     std::cout<<"Remaining orders in the list are: "<<std::endl;
-    for (auto listIterator= orderRequestList.begin();listIterator!= orderRequestList.end(); ++listIterator)
-        (*listIterator).printOrder();
+    for (auto &order: orderRequestList)
+        order.printOrder();
 
     return 0;
 }
