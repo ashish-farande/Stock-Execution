@@ -75,14 +75,14 @@ bool StockExchange::processOrder(StockOrder &order, std::list<StockOrder> &order
     return true;
 }
 
-bool StockExchange::checkCompanyInMap(const std::string &companyName)
+bool StockExchange::checkCompanyInMap(const CompanyName &companyName)
 {
     if (_buyOrders.find(companyName) == _buyOrders.end())
         return false;
     return true;
 }
 
-bool StockExchange::addComapnyToMap(const std::string &companyName)
+bool StockExchange::addComapnyToMap(const CompanyName &companyName)
 {
     // _buyOrders[companyName];
     // _sellOrders[companyName];

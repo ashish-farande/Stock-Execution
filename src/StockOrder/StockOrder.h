@@ -15,20 +15,24 @@ enum orderSide
     SELL
 };
 
+typedef int Quantity;
+typedef int StockID; 
+typedef std::string CompanyName;
+
 class StockOrder
 {
   public:
     StockOrder(int stockID, std::string companyName, orderSide side, int quantity);
 
     //Getters
-    int getStockID() const;
-    const std::string &getCompanyName() const;
-    orderSide getSide() const;
-    int getQuantity() const;
-    orderStatus getStatus() const;
-    int getRemainingQuantity() const;
+    const StockID getStockID() const;
+    const CompanyName &getCompanyName() const;
+    const orderSide getSide() const;
+    const Quantity getQuantity() const;
+    const orderStatus getStatus() const;
+    const Quantity getRemainingQuantity() const;
 
-    void reduceRemainingQuantity(int quantity);
+    void reduceRemainingQuantity(Quantity quantity);
 
     void printOrder();
 
@@ -45,11 +49,11 @@ class StockOrder
     }
 
   private:
-    int _stockID;
-    std::string _companyName;
+    StockID _stockID;
+    CompanyName _companyName;
     orderSide _side;
-    int _quantity;
-    int _remainingQuantity;
+    Quantity _quantity;
+    Quantity _remainingQuantity;
     orderStatus _status;
 };
 #endif

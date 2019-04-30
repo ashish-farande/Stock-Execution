@@ -19,8 +19,8 @@ class StockExchange
   private:
     StockExchange();
     bool processOrder(StockOrder &order, std::list<StockOrder> &orders);
-    bool checkCompanyInMap(const std::string &companyName);
-    bool addComapnyToMap(const std::string &companyName);
+    bool checkCompanyInMap(const CompanyName &companyName);
+    bool addComapnyToMap(const CompanyName &companyName);
     bool buyOrder(StockOrder &order, std::list<StockOrder> &orders);
     bool sellOrder(StockOrder &order, std::list<StockOrder> &orders);
 

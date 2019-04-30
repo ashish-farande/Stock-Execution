@@ -17,9 +17,9 @@ public:
     virtual bool changeStatus(const StockOrder& order);
 
 private:
-    const std::string getSideString (int side);
-    const std::string getStatusString(int status);
-    const std::string getReamQuantityString(int quantity, int remainingQuantity);
+    const std::string getSideString (const orderSide side);
+    const std::string getStatusString(const orderStatus status);
+    const std::string getReamQuantityString(const Quantity quantity, const Quantity remainingQuantity);
 
 private:
     CSVLogger();
