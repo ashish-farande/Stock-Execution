@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <iostream>
 
-StockOrder::StockOrder(StockID stockID, std::string companyName, orderSide side, Quantity quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
+StockOrder::StockOrder(StockID stockID, CompanyName companyName, orderSide side, Quantity quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
 {
     CSVLogger::getInstance().writeTheOrder(*this);
 }
@@ -20,7 +20,7 @@ const StockID StockOrder::getStockID() const
     return _stockID;
 }
 
-const std::string &StockOrder::getCompanyName() const
+const CompanyName &StockOrder::getCompanyName() const
 {
     return _companyName;
 }
@@ -55,7 +55,7 @@ void StockOrder::reduceRemainingQuantity(Quantity quantity)
         CSVLogger::getInstance().changeStatus(*this);
 }
 
-void StockOrder::printOrder()
+void StockOrder::printOrder() const
 {
     std::cout << "========================================================================" << std::endl;
     std::cout << "The StockID is: " << _stockID << std::endl;
