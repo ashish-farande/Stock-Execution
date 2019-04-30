@@ -22,7 +22,7 @@ typedef std::string CompanyName;
 class StockOrder
 {
   public:
-    StockOrder(int stockID, std::string companyName, orderSide side, int quantity);
+    StockOrder(Quantity stockID, std::string companyName, orderSide side, Quantity quantity);
 
     //Getters
     const StockID getStockID() const;
@@ -34,7 +34,7 @@ class StockOrder
 
     void reduceRemainingQuantity(Quantity quantity);
 
-    void printOrder();
+    void printOrder() const;
 
     void closeOrder();
 
