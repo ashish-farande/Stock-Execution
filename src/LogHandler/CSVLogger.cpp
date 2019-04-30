@@ -1,6 +1,7 @@
-#include "LogHandler/CSVLogger.h"
-#include <limits>
 #include <iostream>
+#include <limits>
+
+#include "LogHandler/CSVLogger.h"
 
 #define FILE_NAME "../OutputFiles/OutputFile.csv"
 

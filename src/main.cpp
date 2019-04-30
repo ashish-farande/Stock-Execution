@@ -1,10 +1,11 @@
+#include <iostream>
+#include <list>
+#include <memory>
+
 #include "CSVReader/I_CSVReader.h"
 #include "CSVReader/CSVReader.h"
 #include "StockOrder/StockOrder.h"
-#include "StockExchange/StockExchange.h"
-#include <list>
-#include <memory>
-#include <iostream>
+// #include "StockExchange/StockExchange.h"
 
 int main()
 {
@@ -19,8 +20,8 @@ int main()
 
     // The process will be printed and edited as soon as they are entered and modified.
     // Only the open orders will be remaining in the list
-    std::cout<<"Remaining orders in the list are: "<<std::endl;
-    for (const auto &order: orderRequestList)
+    std::cout << "Remaining orders in the list are: " << std::endl;
+    for (const auto &order : orderRequestList)
         order.printOrder();
 
     return 0;

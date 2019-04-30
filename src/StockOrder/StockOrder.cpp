@@ -1,7 +1,8 @@
+#include <iostream>
+#include <assert.h>
+
 #include "StockOrder/StockOrder.h"
 #include "LogHandler/CSVLogger.h"
-#include <assert.h>
-#include <iostream>
 
 StockOrder::StockOrder(StockID stockID, CompanyName companyName, orderSide side, Quantity quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
 {
@@ -40,7 +41,7 @@ const orderStatus StockOrder::getStatus() const
     return _status;
 }
 
-const Quantity  StockOrder::getRemainingQuantity() const
+const Quantity StockOrder::getRemainingQuantity() const
 {
     return _remainingQuantity;
 }

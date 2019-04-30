@@ -1,15 +1,14 @@
-#include "CSVReader.h"
 #include <iostream>
 #include <iterator>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 #include <experimental/filesystem>
 
+#include "CSVReader/CSVReader.h"
 #include "StockExchange/StockExchange.h"
 
-
 #define ROOT_DIRECTORY "../"
-#define INPUT_PATH "InputFiles"
+#define INPUT_PATH "InputFiles/"
 
 namespace fs = std::experimental::filesystem;
 
