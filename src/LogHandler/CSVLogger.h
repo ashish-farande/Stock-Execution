@@ -19,7 +19,7 @@ public:
 private:
     const std::string getSideString(const orderSide side);
     const std::string getStatusString(const orderStatus status);
-    const std::string getReamQuantityString(const Quantity quantity, const Quantity remainingQuantity);
+    const std::string getReamQuantityString(const units_t quantity, const units_t remainingQuantity);
 
 private:
     CSVLogger();
