@@ -10,15 +10,15 @@ class CSVReader : public I_CSVReader
 {
 public:
   CSVReader();
-  virtual ~CSVReader();
-  virtual void init();
-  virtual bool getDataFromFile(std::list<StockOrder> &orderlist);
-  virtual void printOrder(StockOrder &order);
-  virtual StockOrder getStockOrder(std::string &line);
-
+  virtual ~CSVReader() override;
+  virtual void init() override;
+  virtual bool getDataFromFile(std::list<StockOrder> &orderlist) override;
+  virtual StockOrder getNextOrder() override;
 
 private:
-  StockOrder getNextOrder();
+  StockOrder getStockOrder(std::string &line);
+  void printOrder(StockOrder &order);
+
   void getFileName();
 
 private:
