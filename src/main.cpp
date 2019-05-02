@@ -5,7 +5,7 @@
 #include "CSVReader/I_CSVReader.h"
 #include "CSVReader/CSVReader.h"
 #include "StockOrder/StockOrder.h"
-// #include "StockExchange/StockExchange.h"
+#include "StockExchange/StockExchange.h"
 
 int main()
 {
