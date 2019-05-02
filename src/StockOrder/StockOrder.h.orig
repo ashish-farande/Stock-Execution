@@ -1,0 +1,102 @@
+#ifndef STOCK_ORDER_H
+#define STOCK_ORDER_H
+
+#include <string>
+
+enum orderStatus
+{
+  OPEN = false,
+  CLOSED = true
+};
+
+enum orderSide
+{
+  BUY,
+  SELL
+};
+
+<<<<<<< 906abc29863e0318684f31570ada9d7201390042
+typedef int Quantity;
+typedef int StockID;
+typedef std::string CompanyName;
+
+class StockOrder
+{
+public:
+  StockOrder(Quantity stockID, std::string companyName, orderSide side, Quantity quantity);
+
+  //Getters
+  const StockID getStockID() const;
+  const CompanyName &getCompanyName() const;
+  const orderSide getSide() const;
+  const Quantity getQuantity() const;
+  const orderStatus getStatus() const;
+  const Quantity getRemainingQuantity() const;
+
+  void reduceRemainingQuantity(Quantity quantity);
+
+  void printOrder() const;
+
+  void closeOrder();
+
+  bool operator==(const StockOrder *order) const
+  {
+    return this->_stockID == order->_stockID;
+  }
+
+  bool operator==(const StockOrder &order) const
+  {
+    return this->_stockID == order._stockID;
+  }
+
+private:
+  StockID _stockID;
+  CompanyName _companyName;
+  orderSide _side;
+  Quantity _quantity;
+  Quantity _remainingQuantity;
+  orderStatus _status;
+=======
+typedef int units_t ;
+typedef int stockID_t; 
+typedef std::string companyName_t;
+
+class StockOrder
+{
+  public:
+    StockOrder(units_t stockID, std::string companyName, orderSide side, units_t quantity);
+
+    //Getters
+    const stockID_t getStockID() const;
+    const companyName_t &getCompanyName() const;
+    const orderSide getSide() const;
+    const units_t getQuantity() const;
+    const orderStatus getStatus() const;
+    const units_t getRemainingQuantity() const;
+
+    void reduceRemainingQuantity(units_t quantity);
+
+    void printOrder() const;
+
+    void closeOrder();
+
+    bool operator==(const StockOrder *order) const
+    {
+      return this->_stockID == order->_stockID;
+    }
+
+    bool operator==(const StockOrder &order) const
+    {
+      return this->_stockID == order._stockID;
+    }
+
+  private:
+    stockID_t _stockID;
+    companyName_t _companyName;
+    orderSide _side;
+    units_t _quantity;
+    units_t _remainingQuantity;
+    orderStatus _status;
+>>>>>>> Changed typedef names
+};
+#endif

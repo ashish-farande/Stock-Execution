@@ -1,0 +1,43 @@
+#ifndef CSVREADER_H_
+#define CSVREADER_H_
+
+#include <string>
+#include <list>
+#include <fstream>
+
+#include "CSVReader/I_CSVReader.h"
+
+class CSVReader : public I_CSVReader
+{
+public:
+  CSVReader();
+<<<<<<< 9e87671a056f5f7a3520592d9ceb6e845fdaf52b
+  virtual ~CSVReader() { ; };
+  virtual bool getDataFromFile(std::list<StockOrder> &orderlist);
+  virtual void printOrder(StockOrder &order);
+
+private:
+  void getFileName();
+  StockOrder getStockOrder(std::string &line);
+
+private:
+  std::string _fileName;
+=======
+  virtual ~CSVReader();
+  virtual void init();
+  virtual bool getDataFromFile(std::list<StockOrder> &orderlist);
+  virtual void printOrder(StockOrder &order);
+  virtual StockOrder getStockOrder(std::string &line);
+
+
+private:
+  StockOrder getNextOrder();
+  void getFileName();
+
+private:
+  std::string _fileName;
+  std::ifstream _file;
+>>>>>>> Made the responsibity of reader more lucid
+  bool _checkFlag;
+};
+#endif
