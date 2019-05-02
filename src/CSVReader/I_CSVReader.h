@@ -2,7 +2,6 @@
 #define I_CSVREADER_H_
 
 
-#include <memory>
 #include <string>
 #include <list>
 
@@ -16,7 +15,6 @@ public:
   virtual void init() = 0;
   virtual bool getDataFromFile(std::list<StockOrder> &orderlist) = 0;
   virtual StockOrder getNextOrder() = 0;
-
 };
 
 #endif
