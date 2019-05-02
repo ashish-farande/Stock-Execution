@@ -56,7 +56,7 @@ const std::string CSVLogger::getStatusString(const orderStatus status)
     return static_cast<bool>(status) ? "CLOSED" : "OPEN  ";
 }
 
-const std::string CSVLogger::getReamQuantityString(const Quantity quantity, const Quantity remainingQuantity)
+const std::string CSVLogger::getReamQuantityString(const units_t quantity, const units_t remainingQuantity)
 {
     std::string remainingQuantityStr;
     remainingQuantityStr = std::to_string(remainingQuantity);

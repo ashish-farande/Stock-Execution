@@ -1,10 +1,9 @@
-#include <iostream>
-#include <assert.h>
-
 #include "StockOrder/StockOrder.h"
 #include "LogHandler/CSVLogger.h"
+#include <assert.h>
+#include <iostream>
 
-StockOrder::StockOrder(StockID stockID, CompanyName companyName, orderSide side, Quantity quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
+StockOrder::StockOrder(stockID_t stockID, companyName_t companyName, orderSide side, units_t   quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
 {
     CSVLogger::getInstance().writeTheOrder(*this);
 }
@@ -16,12 +15,12 @@ void StockOrder::closeOrder()
     CSVLogger::getInstance().changeStatus(*this);
 }
 
-const StockID StockOrder::getStockID() const
+const stockID_t StockOrder::getStockID() const
 {
     return _stockID;
 }
 
-const CompanyName &StockOrder::getCompanyName() const
+const companyName_t &StockOrder::getCompanyName() const
 {
     return _companyName;
 }
@@ -31,7 +30,7 @@ const orderSide StockOrder::getSide() const
     return _side;
 }
 
-const Quantity StockOrder::getQuantity() const
+const units_t StockOrder::getQuantity() const
 {
     return _quantity;
 }
@@ -41,12 +40,12 @@ const orderStatus StockOrder::getStatus() const
     return _status;
 }
 
-const Quantity StockOrder::getRemainingQuantity() const
+const units_t StockOrder::getRemainingQuantity() const
 {
     return _remainingQuantity;
 }
 
-void StockOrder::reduceRemainingQuantity(Quantity quantity)
+void StockOrder::reduceRemainingQuantity(units_t   quantity)
 {
     assert(quantity <= _remainingQuantity);
     _remainingQuantity -= quantity;
