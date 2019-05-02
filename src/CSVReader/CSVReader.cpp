@@ -16,25 +16,33 @@ CSVReader::CSVReader() : _checkFlag(false)
 {
 }
 
-bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
+CSVReader::~CSVReader() noexcept
+{
+    _file.close();
+}
+
+void CSVReader::init()
 {
     getFileName();
-
-    std::ifstream file(_fileName);
+    _file.open(_fileName, std::ios::in);
     std::string line;
-    while (getline(file, line))
+    getline(_file, line);
+}
+
+bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
+{
+    while (true)
     {
-        if (_checkFlag)
+        try
         {
-            orderlist.push_back(getStockOrder(line));
-            // Process the order as soom as we read it.
-            StockExchange::getInstance().processCurrentOrder(orderlist);
+            orderlist.push_back(getNextOrder());
         }
-
-        _checkFlag = true;
+        catch (...)
+        {
+            std::cout << "Its end of file." << std::endl;
+            break;
+        }
     }
-    file.close();
-
     return true;
 }
 
@@ -85,6 +93,19 @@ StockOrder CSVReader::getStockOrder(std::string &line)
     StockOrder order(atoi(vec[0].c_str()), vec[2], static_cast<orderSide>(vec[1] == "Buy" ? 0 : 1), atoi(vec[3].c_str()));
     // printOrder(order);
     return order;
+}
+
+StockOrder CSVReader::getNextOrder()
+{
+    std::string line;
+    if (getline(_file, line))
+    {
+        return getStockOrder(line);
+    }
+    else
+    {
+        throw("EOF");
+    }
 }
 
 void CSVReader::printOrder(StockOrder &order)
