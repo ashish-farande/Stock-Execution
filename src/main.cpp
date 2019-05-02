@@ -12,8 +12,23 @@ int main()
     std::list<StockOrder> orderRequestList;
 
     //Read the orders from the file.
-    std::shared_ptr<I_CSVReader> reader(new CSVReader);
-    reader->getDataFromFile(orderRequestList);
+    std::shared_ptr<I_CSVReader> reader = std::make_shared<CSVReader>();
+    reader->init();
+
+    // Reading and processing the order, one by one
+    while (true)
+    {
+        try
+        {
+            orderRequestList.push_back(reader->getNextOrder());
+        }
+        catch (...)
+        {
+            break;
+        }
+        // Process the order as soom as we read it.
+        StockExchange::getInstance().processCurrentOrder(orderRequestList);
+    }
 
     // Process the orders in the list.
     // StockExchange::getInstance().processAllTheOrders(orderRequestList);
