@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <iostream>
 
-StockOrder::StockOrder(stockID_t stockID, companyName_t companyName, orderSide side, units_t   quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
+StockOrder::StockOrder(stockID_t stockID, companyName_t companyName, orderSide side, units_t quantity) : _stockID(stockID), _companyName(companyName), _side(side), _quantity(quantity), _remainingQuantity(quantity), _status(orderStatus::OPEN)
 {
     CSVLogger::getInstance().writeTheOrder(*this);
 }
@@ -45,7 +45,7 @@ const units_t StockOrder::getRemainingQuantity() const
     return _remainingQuantity;
 }
 
-void StockOrder::reduceRemainingQuantity(units_t   quantity)
+void StockOrder::reduceRemainingQuantity(units_t quantity)
 {
     assert(quantity <= _remainingQuantity);
     _remainingQuantity -= quantity;
