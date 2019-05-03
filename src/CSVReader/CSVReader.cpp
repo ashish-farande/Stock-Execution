@@ -37,9 +37,9 @@ bool CSVReader::getDataFromFile(std::list<StockOrder> &orderlist)
         {
             orderlist.push_back(getNextOrder());
         }
-        catch (...)
+        catch (std::string &e)
         {
-            std::cout << "Its end of file." << std::endl;
+            std::cout << e << std::endl;
             break;
         }
     }
@@ -104,7 +104,7 @@ StockOrder CSVReader::getNextOrder()
     }
     else
     {
-        throw("EOF");
+        throw std::string("End of File !!!");
     }
 }
 

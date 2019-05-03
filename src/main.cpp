@@ -22,8 +22,9 @@ int main()
         {
             orderRequestList.push_back(std::move(reader->getNextOrder()));
         }
-        catch (...)
+        catch (std::string &e)
         {
+            std::cout << e << std::endl;
             break;
         }
         // Process the order as soom as we read it.
@@ -35,7 +36,7 @@ int main()
 
     // The process will be printed and edited as soon as they are entered and modified.
     // Only the open orders will be remaining in the list
-    std::cout << "Remaining orders in the list are: " << std::endl;
+    std::cout << "\nRemaining orders in the list are: " << std::endl;
     for (const auto &order : orderRequestList)
         order.printOrder();
 
