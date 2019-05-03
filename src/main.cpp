@@ -20,7 +20,7 @@ int main()
     {
         try
         {
-            orderRequestList.push_back(reader->getNextOrder());
+            orderRequestList.push_back(std::move(reader->getNextOrder()));
         }
         catch (...)
         {
