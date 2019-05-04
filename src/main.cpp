@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <memory>
+#include <chrono>
 
 #include "CSVReader/I_CSVReader.h"
 #include "CSVReader/CSVReader.h"
@@ -9,6 +10,8 @@
 
 int main()
 {
+    auto t1 = std::chrono::high_resolution_clock::now();
+
     std::list<StockOrder> orderRequestList;
 
     //Read the orders from the file.
@@ -40,5 +43,8 @@ int main()
     for (const auto &order : orderRequestList)
         order.printOrder();
 
+    auto t2 = std::chrono::high_resolution_clock::now();
+
+    std::cout << "The software took " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << " milliseconds" << std::endl;
     return 0;
 }
